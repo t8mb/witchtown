@@ -1,9 +1,10 @@
 RewriteEngine On
-# 1. Remove .html from the URL bar if a user types it
-RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
-RewriteRule ^ /%1 [NC,L,R]
 
-# 2. Map the clean URL back to the actual .html file internally
+# 1. If someone goes to members.html, REDIRECT them to just /members
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1 [NC,L,R=301]
+
+# 2. If someone goes to /members, internally SHOW them members.html
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.*)$ $1.html [NC,L]
