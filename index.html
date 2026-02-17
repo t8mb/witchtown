@@ -2,8 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Witchtown</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Witchtown</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -11,15 +17,11 @@
             box-sizing: border-box;
             font-family: "Barriecito", system-ui;
         }
-        .barriecito-regular {
-           font-family: "Barriecito", system-ui;
-           font-weight: 00;
-           font-style: normal;
-}
 
         body {
             height: 100vh;
-            background: url('https://i.postimg.cc/CKcLfkXT/d1a9630d4e9adeec437875ff8d78fbd7.jpg') no-repeat center center/cover fixed;
+            /* Added a fallback background color in case the image fails to load */
+            background: #0b0b0b url('https://i.postimg.cc') no-repeat center center/cover fixed;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,6 +29,7 @@
             position: relative;
         }
 
+        /* Dark overlay for better text readability */
         body::before {
             content: "";
             position: absolute;
@@ -45,96 +48,79 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 40px;
+            gap: 20px;
         }
 
         .landing-title {
             font-size: 6rem;
             font-weight: 700;
             color: #faf8f8;
-            text-shadow: 
-                0 0 10px rgba(0, 0, 0, 0.8),
-                0 0 20px rgba(0, 0, 0, 0.6),
-                0 0 30px rgba(255, 255, 255, 0.3);
-            letter-spacing: px;
-            animation: glow s ease-in-out infinite;
+            letter-spacing: 2px; /* Fixed: Added value */
+            animation: glow 3s ease-in-out infinite; /* Fixed: Added '3s' duration */
         }
 
         @keyframes glow {
             0%, 100% {
                 text-shadow: 
-                    0 0 10px rgb(253, 253, 253),
-                    0 0 20px rgb(176, 176, 177),
-                    0 0 30px rgba(0, 0, 0, 0.3);
+                    0 0 10px rgba(255, 255, 255, 0.8),
+                    0 0 20px rgba(255, 255, 255, 0.4),
+                    0 0 30px rgba(0, 0, 0, 0.5);
             }
             50% {
                 text-shadow: 
-                    0 0 20px rgb(252, 249, 249),
-                    0 0 30px rgba(0, 0, 0, 0.8),
-                    0 0 40px rgb(0, 0, 0);
+                    0 0 20px rgba(255, 255, 255, 1),
+                    0 0 40px rgba(255, 255, 255, 0.6),
+                    0 0 60px rgba(0, 0, 0, 0.8);
             }
         }
 
         .landing-subtitle {
             font-size: 2.7rem;
-            color: rgba(255, 255, 255, 0.8);
-            text-shadow: 0 0 10px rgb(0, 0, 0);
-            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+            margin-bottom: 30px;
         }
 
         .enter-button {
-            padding: 15px 50px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border: 2px solid rgba(250, 249, 250, 0.6);
-            background: rgba(0, 0, 0, 0.1);
+            padding: 15px 60px;
+            font-size: 1.3rem;
+            font-weight: 400; /* Barriecito's standard weight */
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.1);
             color: #ffffff;
             border-radius: 50px;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(7px);
-            box-shadow: 0 0 15px rgb(250, 249, 250);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
 
         .enter-button:hover {
-            background: rgb(7, 7, 7);
-            border-color: rgb(251, 250, 252);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #ffffff;
             transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(250, 249, 250, 0.6);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
         }
 
         .enter-button:active {
-            transform: scale(0.98);
+            transform: scale(0.95);
         }
 
-        @media(max-width: 600px) {
-            .landing-title {
-                font-size: 2.5rem;
-            }
-
-            .landing-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .enter-button {
-                padding: 12px 40px;
-                font-size: 1rem;
-            }
+        /* Responsive scaling for mobile devices */
+        @media(max-width: 768px) {
+            .landing-title { font-size: 4rem; }
+            .landing-subtitle { font-size: 1.8rem; }
+            .enter-button { padding: 12px 45px; font-size: 1.1rem; }
         }
     </style>
 </head>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barriecito&display=swap" rel="stylesheet">
 <body>
     <div class="landing-container">
         <h1 class="landing-title">Witchtown</h1>
-        <p class="landing-subtitle">private party </p>
-        <a href="members" class="enter-button">Enter</a>
+        <p class="landing-subtitle">private party</p>
+        <a href="members.html" class="enter-button">Enter</a>
     </div>
 </body>
 </html>
-
-
