@@ -2,61 +2,117 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Witchtown</title>
+  <title>Witchtown - Members</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Balthazar&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com" rel="stylesheet">
+  
+  <style>
+    /* 1. LOADING SCREEN STYLES */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      cursor: pointer;
+      transition: opacity 0.8s ease, visibility 0.8s;
+    }
+    #loader.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .loader-text {
+      font-size: 2rem;
+      letter-spacing: 5px;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    /* 2. VIDEO & LAYOUT FIXES */
+    video#bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+    /* Fixed Money Positioning */
+    .money:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .money:nth-child(2) { left: 30%; animation-delay: 2s; }
+    .money:nth-child(3) { left: 50%; animation-delay: 1s; }
+    .money:nth-child(4) { left: 70%; animation-delay: 3s; }
+    .money:nth-child(5) { left: 90%; animation-delay: 1.5s; }
+
+    @media (max-width: 600px) {
+      .ascii-art { font-size: 6px !important; }
+      .container { grid-template-columns: 1fr; width: 95%; margin-top: 50px; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Background Video -->
-  <video autoplay loop muted playsinline>
-    <source src="thrasher.mp4" type="video/mp4">
+
+  <!-- Loading Screen (Acts as interaction trigger for audio) -->
+  <div id="loader" onclick="startPage()">
+    <div class="loader-text">CLICK TO ENTER WITCHTOWN</div>
+  </div>
+
+  <!-- Background Video (Replace YOUR_CATBOX_LINK_HERE with your .mp4 link) -->
+  <video id="bg-video" autoplay loop muted playsinline>
+    <source src="https://files.catbox.moe" type="video/mp4">
   </video>
 
   <!-- Audio -->
-  <audio src="08. Mayhem - Symbols of Bloodswords.mp3" autoplay loop></audio>
+  <audio id="bg-audio" src="08. Mayhem - Symbols of Bloodswords.mp3" loop></audio>
 
-  <!-- Content Container -->
   <div class="container">
+    <!-- Member Bubbles -->
     <div class="bubble">
-      <img src="https://i.postimg.cc/TwvVwvr5/b5d959e0483ab8dfc14d5c9eaa44349c.jpg" alt="crysik" class="pfp">
+      <img src="https://i.postimg.cc" alt="crysik" class="pfp">
       <h2>crysik</h2>
       <p>"im fried"</p>
-      <a href="https://instagram.com/crysiks" target="_blank" class="instagram">
+      <a href="https://instagram.com" target="_blank" class="instagram">
         <i class="fab fa-instagram blink"></i>
       </a>
     </div>
 
     <div class="bubble">
-      <img src="https://i.postimg.cc/T2SJ9Qtp/584407935-17845975281622864-7118636943130307127-n.jpg" alt="goth" class="pfp">
+      <img src="https://i.postimg.cc" alt="goth" class="pfp">
       <h2>goth</h2>
       <p>lazy fuck</p>
-      <a href="https://t.me/kojikugas" target="_blank" class="telegram">
+      <a href="https://t.me" target="_blank" class="telegram">
         <i class="fab fa-telegram blink"></i>
       </a>
     </div>
 
     <div class="bubble">
-      <img src="https://i.postimg.cc/FFqVZGTR/imasdadae.png" alt="karm" class="pfp">
+      <img src="https://i.postimg.cc" alt="karm" class="pfp">
       <h2>karm</h2>
       <p>"revenge"</p>
-      <a href="https://t.me/coverns" target="_blank" class="telegram">
+      <a href="https://t.me" target="_blank" class="telegram">
         <i class="fab fa-telegram blink"></i>
       </a>
     </div>
 
     <div class="bubble">
-      <img src="https://i.postimg.cc/CMtsNJcY/sdaimage.png" alt="cartt" class="pfp">
+      <img src="https://i.postimg.cc" alt="cartt" class="pfp">
       <h2>cartt</h2>
       <p>#free cartt</p>
-      <a href="https://t.me/username1" target="_blank" class="telegram">
+      <a href="https://t.me" target="_blank" class="telegram">
         <i class="fab fa-telegram blink"></i>
       </a>
     </div>
-    
 
-    <!-- ASCII Art with Blink -->
     <pre class="ascii-art blink">
                                   _..._                           .-'''-.                             
                                .-'_..._''.                       '   _    \                           
@@ -75,13 +131,24 @@
          aint no money like witchtown money
     </pre>
   </div>
+
+  <div class="money-container">
+    <div class="money">$</div>
+    <div class="money">$</div>
+    <div class="money">$</div>
+    <div class="money">$</div>
+    <div class="money">$</div>
+  </div>
+
+  <script>
+    function startPage() {
+      // Hide loader
+      document.getElementById('loader').classList.add('fade-out');
+      // Start audio (Interaction achieved!)
+      const audio = document.getElementById('bg-audio');
+      audio.volume = 0.5; // Optional: set volume
+      audio.play();
+    }
+  </script>
 </body>
 </html>
-<div class="money-container">
-  <div class="money">$</div>
-  <div class="money">$</div>
-  <div class="money">$</div>
-  <div class="money">$</div>
-  <div class="money">$</div>
-</div>
-  
