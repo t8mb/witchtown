@@ -107,6 +107,20 @@ body::before {
     background: rgb(255, 255, 255, 0);
 }
 
+.twitter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 50px;
+    border: 1.5px solid rgb(255, 255, 255, 0);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    transition: 0.3s ease;
+    background: rgb(255, 255, 255, 0);
+}
+
 .soundcloud {
     display: inline-flex;
     align-items: center;
